@@ -2,9 +2,7 @@
 
 #include <glad.h>
 #include <glfw3.h>
-#include <iostream>
 #include <stdio.h>
-#include <string>
 #include <string>
 
 //#############################
