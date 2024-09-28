@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_executable(${PROJECT_NAME}
     src/main.cpp
     src/backend/backend.cpp
+    src/api/gl_backend.cpp
     vendor/glad/glad.c
 )
 

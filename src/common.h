@@ -4,6 +4,7 @@
 #include <glfw3.h>
 #include <stdio.h>
 #include <string>
+#include <glm.hpp>
 
 //#############################
 //          Logging
@@ -85,3 +86,16 @@ void _log(std::string prefix, std::string msg, TextColor textColor, Args... args
         DEBUG_BREAK();               \
     }                               \
 }
+
+//###############################
+//          TYPES
+//###############################
+
+struct Vertex {
+    Vertex() = default;
+    Vertex(glm::vec3 pos) {
+        position = pos;
+    }
+
+    glm::vec3 position;
+};
