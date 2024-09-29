@@ -1,6 +1,11 @@
 #include "../common.h"
 #include "backend.h"
 
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+    glViewport(0, 0, width, height);
+}
+
 namespace Backend
 {
     //###########################################
@@ -27,7 +32,6 @@ namespace Backend
 
         glfwWindowHint(GLFW_VISIBLE, GLFW_TRUE);
         glfwWindowHint(GLFW_FOCUS_ON_SHOW, GLFW_TRUE);
-
         _monitor = glfwGetPrimaryMonitor();
         _mode = glfwGetVideoMode(_monitor);
         glfwWindowHint(GLFW_RED_BITS, _mode->redBits);
@@ -39,13 +43,15 @@ namespace Backend
         Backend::create_window();
         G_ASSERT(_window != NULL);
 
+        glfwSetFramebufferSizeCallback(_window, framebuffer_size_callback);
+
         glfwMakeContextCurrent(_window);
 
         if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
             G_ERROR("Failed to load GLAD");
         }
 
-        glViewport(0, 0, 800, 600);
+        glViewport(0, 0, _width, _height);
     }
 
     void create_window() {
