@@ -1,5 +1,6 @@
 #include "backend/backend.h"
 #include "api/gl_backend.h"
+#include "api/gl_renderer.h"
 #include <vector>
 
 std::vector<Vertex> vertices = {
@@ -17,10 +18,12 @@ std::vector<uint32_t> indices = {
 int main() {
     Backend::init();
     GLBackend::init();
+    GLRenderer::init();
 
     while (Backend::is_running()) {
         Backend::begin_frame();
-        GLBackend::upload_vertex_data(vertices, indices);
+        GLBackend::rebind_buffers();
+        GLRenderer::render_frame(vertices, indices);
         Backend::end_frame();
     }
 

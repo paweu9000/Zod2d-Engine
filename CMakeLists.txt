@@ -8,6 +8,7 @@ add_executable(${PROJECT_NAME}
     src/main.cpp
     src/backend/backend.cpp
     src/api/gl_backend.cpp
+    src/api/gl_renderer.cpp
     vendor/glad/glad.c
 )
 
