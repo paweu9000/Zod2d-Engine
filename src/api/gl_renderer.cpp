@@ -1,6 +1,7 @@
 #include "gl_renderer.h"
 #include <iostream>
 #include <functional>
+#include "../core/asset_manager.h"
 
 enum ErrorType {
     SHADER, PROGRAM
@@ -12,20 +13,26 @@ namespace GLRenderer
 
     const char* vertexShaderSource = "#version 460 core\n"
     "layout (location = 0) in vec3 aPos;\n"
+    "layout (location = 1) in vec2 aTexCoord;\n"
+    "out vec2 TexCoord;\n"
     "void main()\n"
     "{\n"
-    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+    "   gl_Position = vec4(aPos, 1.0);\n"
+    "   TexCoord = aTexCoord;\n"
     "}\0";
     const char* fragmentShaderSource = "#version 460 core\n"
     "out vec4 FragColor;\n"
+    "in vec2 TexCoord;\n"
+    "uniform sampler2D tex;\n"
     "void main()\n"
     "{\n"
-    "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+    "   FragColor = texture(tex, TexCoord) * vec4(1.f, 1.f, 0.f, 1.f);\n"
     "}\n\0";
 
     void init()
     {
         load_shaders();
+        AssetManager::load_textures();
     }
 
     void load_shaders()
@@ -79,7 +86,12 @@ namespace GLRenderer
 
         glEnableVertexAttribArray(0);
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
+        glEnableVertexAttribArray(1);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, textureCoords));
 
+        glUniform1i(glGetUniformLocation(_shaderProgram, "tex"), 0);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, AssetManager::get_texture("pope"));
         glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
 
         glEnableVertexAttribArray(0);

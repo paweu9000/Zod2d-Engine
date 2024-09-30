@@ -93,9 +93,11 @@ void _log(std::string prefix, std::string msg, TextColor textColor, Args... args
 
 struct Vertex {
     Vertex() = default;
-    Vertex(glm::vec3 pos) {
+    Vertex(glm::vec3 pos, glm::vec2 texCoords) {
         position = pos;
+        textureCoords = texCoords;
     }
 
     glm::vec3 position;
+    glm::vec2 textureCoords;
 };
