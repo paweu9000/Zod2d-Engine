@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(${PROJECT_NAME} game)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_executable(${PROJECT_NAME}
@@ -21,6 +21,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/vendor/stb_image
 )
 
+if (WIN32)
 target_link_libraries(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/vendor/dll/libglfw3dll.a
 )
@@ -32,3 +33,8 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     ${CMAKE_SOURCE_DIR}/vendor/dll/glfw3.dll
     ${CMAKE_CURRENT_BINARY_DIR}/glfw3.dll
 )
+elseif (UNIX)
+	find_package(glfw3 REQUIRED)
+	find_package(OpenGL REQUIRED)
+	target_link_libraries(${PROJECT_NAME} glfw OpenGL::GL)
+endif()
