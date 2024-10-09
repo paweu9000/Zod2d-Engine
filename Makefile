@@ -225,6 +225,30 @@ src/core/asset_manager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/core/asset_manager.cpp.s
 .PHONY : src/core/asset_manager.cpp.s
 
+src/engine.o: src/engine.cpp.o
+.PHONY : src/engine.o
+
+# target to build an object file
+src/engine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/engine.cpp.o
+.PHONY : src/engine.cpp.o
+
+src/engine.i: src/engine.cpp.i
+.PHONY : src/engine.i
+
+# target to preprocess a source file
+src/engine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/engine.cpp.i
+.PHONY : src/engine.cpp.i
+
+src/engine.s: src/engine.cpp.s
+.PHONY : src/engine.s
+
+# target to generate assembly for a file
+src/engine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/src/engine.cpp.s
+.PHONY : src/engine.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -318,6 +342,9 @@ help:
 	@echo "... src/core/asset_manager.o"
 	@echo "... src/core/asset_manager.i"
 	@echo "... src/core/asset_manager.s"
+	@echo "... src/engine.o"
+	@echo "... src/engine.i"
+	@echo "... src/engine.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
