@@ -11,6 +11,7 @@ add_executable(${PROJECT_NAME}
     src/api/gl_renderer.cpp
     src/core/asset_manager.cpp
     src/types/shader.cpp
+    src/engine.cpp
     vendor/glad/glad.c
 )
 
