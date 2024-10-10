@@ -1,3 +1,5 @@
+#pragma once
+#include <glm.hpp>
 
 namespace Backend
 {
@@ -7,4 +9,5 @@ namespace Backend
     void create_window();
     bool is_running();
     void cleanup();
+    glm::vec2 get_screen_size();
 }
