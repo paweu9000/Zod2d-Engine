@@ -4,14 +4,16 @@
 #include <ostream>
 
 namespace Math {
+    template <typename T>
     struct Vec2 {
-        float x, y;
+    public:
+        T x, y;
 
         Vec2() : x(0), y(0) {}
-        Vec2(float x, float y) : x(x), y(y) {}
+        Vec2(T x, T y) : x(x), y(y) {}
 
         Vec2 unit() const {
-            float len = length();
+            T len = length();
             return Vec2(x / len, y / len);
         }
 
@@ -31,11 +33,11 @@ namespace Math {
             return Vec2(x / other.x, y / other.y);
         }
 
-        Vec2 operator*(float scalar) const {
+        Vec2 operator*(T scalar) const {
             return Vec2(x * scalar, y * scalar);
         }
 
-        Vec2 operator/(float scalar) const {
+        Vec2 operator/(T scalar) const {
             return Vec2(x / scalar, y / scalar);
         }
 
@@ -77,17 +79,17 @@ namespace Math {
         }
 
         Vec2 normalize() const {
-            float len = length();
+            T len = length();
             return Vec2(x / len, y / len);
         }
 
-        float length() const {
+        T length() const {
             return std::sqrt(x * x + y * y);
         }
 
-        float angle(const Vec2& other) const {
-            float dotProduct = dot(other);
-            float lengths = length() * other.length();
+        T angle(const Vec2& other) const {
+            T dotProduct = dot(other);
+            T lengths = length() * other.length();
             return std::acos(dotProduct / lengths);
         }
 
@@ -100,28 +102,28 @@ namespace Math {
             return Vec2(-y, x);
         }
 
-        float distance(const Vec2& other) const {
+        T distance(const Vec2& other) const {
             return std::sqrt((x - other.x) * (x - other.x) + (y - other.y) * (y - other.y));
         }
 
-        Vec2 rotate(float angle) const {
-            float rad = angle * (M_PI / 180.0f);
-            float cosA = std::cos(rad);
-            float sinA = std::sin(rad);
+        Vec2 rotate(T angle) const {
+            T rad = angle * (M_PI / 180.0f);
+            T cosA = std::cos(rad);
+            T sinA = std::sin(rad);
             return Vec2(x * cosA - y * sinA, x * sinA + y * cosA);
         }
 
-        float dot(const Vec2& other) const {
+        T dot(const Vec2& other) const {
             return x * other.x + y * other.y;
         }
         
-        Vec2 interpolate(const Vec2& other, float t) const {
+        Vec2 interpolate(const Vec2& other, T t) const {
             return Vec2(x + t * (other.x - x), y + t * (other.y - y));
         }
 
         Vec2 project(const Vec2& other) const {
-            float dotProduct = dot(other);
-            float otherLengthSquared = other.x * other.x + other.y * other.y;
+            T dotProduct = dot(other);
+            T otherLengthSquared = other.x * other.x + other.y * other.y;
             return Vec2((dotProduct / otherLengthSquared) * other.x, (dotProduct / otherLengthSquared) * other.y);
         }
 
@@ -130,7 +132,7 @@ namespace Math {
         }
 
         Vec2 reflect(const Vec2& normal) const {
-            return *this - normal * 2.0f * dot(normal);
+            return *this - normal * 2.0 * dot(normal);
         }
 
         Vec2 scale(float factor) const {
@@ -145,12 +147,12 @@ namespace Math {
             return *this * other;
         }
 
-        float cross(const Vec2& other) const {
+        T cross(const Vec2& other) const {
             return x * other.y - y * other.x;
         }
 
-        float angleDegrees(const Vec2& other) const {
-            return angle(other) * (180.0f / M_PI);
+        T angleDegrees(const Vec2& other) const {
+            return angle(other) * (180.0 / M_PI);
         }
 
         bool isZero() const {
@@ -161,7 +163,7 @@ namespace Math {
             return std::fabs(length() - 1.0f);
         }
 
-        Vec2 clamp(float minVal, float maxVal) const {
+        Vec2 clamp(T minVal, T maxVal) const {
             return Vec2(
                 std::fmax(minVal, std::fmin(x, maxVal)),
                 std::fmax(minVal, std::fmin(y, maxVal))
