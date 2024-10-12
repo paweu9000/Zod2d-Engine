@@ -27,7 +27,7 @@ add_executable(${PROJECT_NAME}
 )
 
 add_executable(hello_test
-    tests/hello_test.cpp
+    tests/math_test.cpp
 )
 
 
