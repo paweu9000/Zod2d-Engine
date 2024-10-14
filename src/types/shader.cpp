@@ -87,22 +87,16 @@ void Shader::set_float(const std::string& name, float value)
     glUniform1f(uniforms[name], value);
 }
 
-void Shader::set_mat4(const std::string& name, glm::mat4 value)
+void Shader::set_vec3(const std::string& name, const Math::Vec3<float>& value)
 {
     add_address(name);
-    glUniformMatrix4fv(uniforms[name], 1, GL_FALSE, &value[0][0]);
+    glUniform3fv(uniforms[name], 1, &value.x);
 }
 
-void Shader::set_vec3(const std::string& name, const glm::vec3& value)
+void Shader::set_vec2(const std::string& name, const Math::Vec2<float>& value)
 {
     add_address(name);
-    glUniform3fv(uniforms[name], 1, &value[0]);
-}
-
-void Shader::set_vec2(const std::string& name, const glm::vec2& value)
-{
-    add_address(name);
-    glUniform2fv(uniforms[name], 1, &value[0]);
+    glUniform2fv(uniforms[name], 1, &value.x);
 }
 
 void Shader::add_address(const std::string& name)

@@ -1,5 +1,5 @@
 #pragma once
-#include <glm.hpp>
+#include "../math.hpp"
 
 namespace Backend
 {
@@ -9,5 +9,5 @@ namespace Backend
     void create_window();
     bool is_running();
     void cleanup();
-    glm::vec2 get_screen_size();
+    Math::Vec2<int> get_screen_size();
 }

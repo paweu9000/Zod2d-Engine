@@ -74,8 +74,8 @@ namespace Backend
         glfwTerminate();
     }
 
-    glm::vec2 get_screen_size()
+    Math::Vec2<int> get_screen_size()
     {
-        return glm::vec2(_width, _height);
+        return {_width, _height};
     }
 }
