@@ -34,14 +34,12 @@ add_executable(hello_test
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/vendor/GLFW
     ${CMAKE_CURRENT_SOURCE_DIR}/vendor/glad
-    ${CMAKE_CURRENT_SOURCE_DIR}/vendor/glm
     ${CMAKE_CURRENT_SOURCE_DIR}/vendor/stb_image
 )
 
 target_include_directories(hello_test PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/vendor/GLFW
     ${CMAKE_CURRENT_SOURCE_DIR}/vendor/glad
-    ${CMAKE_CURRENT_SOURCE_DIR}/vendor/glm
     ${CMAKE_CURRENT_SOURCE_DIR}/vendor/stb_image
 )
 

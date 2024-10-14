@@ -4,7 +4,7 @@
 #include <glfw3.h>
 #include <stdio.h>
 #include <string>
-#include <glm.hpp>
+#include "math.hpp"
 
 //#############################
 //          Logging
@@ -91,11 +91,11 @@ void _log(std::string prefix, std::string msg, TextColor textColor, Args... args
 
 struct Vertex {
     Vertex() = default;
-    Vertex(glm::vec3 pos, glm::vec2 texCoords) {
+    Vertex(Math::Vec3<float> pos, Math::Vec2<float> texCoords) {
         position = pos;
         textureCoords = texCoords;
     }
 
-    glm::vec3 position;
-    glm::vec2 textureCoords;
+    Math::Vec3<float> position;
+    Math::Vec2<float> textureCoords;
 };

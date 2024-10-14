@@ -5,7 +5,7 @@
 #include <vector>
 #include "utils.hpp"
 
-glm::vec2 pos{900.f, 500.f};
+Math::Vec2 pos{900.f, 500.f};
 
 std::vector<uint32_t> indices = {
 	0, 1, 3,
