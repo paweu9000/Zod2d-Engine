@@ -255,4 +255,17 @@ namespace Math {
         TestStreamOperator<double>();
         TestStreamOperator<int>();
     }
+
+    template <typename T>
+    void TestDefaultConstructorVec3() {
+        Vec3<T> vec;
+        EXPECT_EQ(vec.x, 0);
+        EXPECT_EQ(vec.y, 0);
+    }
+
+    TEST(Vec3Test, DefaultConstructor) {
+        TestDefaultConstructorVec3<float>();
+        TestDefaultConstructorVec3<double>();
+        TestDefaultConstructorVec3<int>();
+    }
 }
