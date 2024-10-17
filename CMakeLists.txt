@@ -17,6 +17,7 @@ enable_testing()
 
 add_executable(${PROJECT_NAME}
     src/main.cpp
+    src/game/game.cpp
     src/backend/backend.cpp
     src/api/gl_backend.cpp
     src/api/gl_renderer.cpp
@@ -44,23 +45,23 @@ target_include_directories(hello_test PRIVATE
 )
 
 if (WIN32)
-target_link_libraries(${PROJECT_NAME} PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/vendor/dll/libglfw3dll.a
-)
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/vendor/dll/libglfw3dll.a
+    )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE opengl32)
+    target_link_libraries(${PROJECT_NAME} PRIVATE opengl32)
 
-target_link_libraries(hello_test PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/vendor/dll/libglfw3dll.a
-    opengl32
-    GTest::gtest_main
-)
+    target_link_libraries(hello_test PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/vendor/dll/libglfw3dll.a
+        opengl32
+        GTest::gtest_main
+    )
 
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy
-    ${CMAKE_SOURCE_DIR}/vendor/dll/glfw3.dll
-    ${CMAKE_CURRENT_BINARY_DIR}/glfw3.dll
-)
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy
+        ${CMAKE_SOURCE_DIR}/vendor/dll/glfw3.dll
+        ${CMAKE_CURRENT_BINARY_DIR}/glfw3.dll
+    )
 elseif (UNIX)
 	find_package(glfw3 REQUIRED)
 	find_package(OpenGL REQUIRED)
