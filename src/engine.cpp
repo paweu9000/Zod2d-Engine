@@ -4,6 +4,7 @@
 #include "api/gl_renderer.h"
 #include <vector>
 #include "utils.hpp"
+#include "game/game.h"
 
 Math::Vec2 pos{900.f, 500.f};
 
@@ -17,8 +18,11 @@ void Engine::run()
 	Backend::init();
 	GLBackend::init();	
 	GLRenderer::init();
+	Game::init();
 
 	while (Backend::is_running()) {
+		Game::process_input();
+		Game::update();
 		Backend::begin_frame();
 		GLBackend::rebind_buffers();
 		GLRenderer::render_frame(Utils::get_pos(pos, 64), indices);
