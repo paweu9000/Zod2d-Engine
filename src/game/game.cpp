@@ -8,11 +8,6 @@ namespace Game
         // TODO
     }
 
-    void process_input()
-    {
-        // TODO
-    }
-
     void update()
     {
         // TODO

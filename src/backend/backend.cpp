@@ -17,6 +17,7 @@ namespace Backend
     const GLFWvidmode* _mode;
     int _width = 0;
     int _height = 0;
+    bool _is_running;
 
     //##############################
     //              CORE
@@ -40,6 +41,7 @@ namespace Backend
         glfwWindowHint(GLFW_REFRESH_RATE, _mode->refreshRate);
         _width = _mode->width;
         _height = _mode->height;
+        _is_running = true;
         Backend::create_window();
         G_ASSERT(_window != NULL);
 
@@ -67,7 +69,7 @@ namespace Backend
     }
 
     bool is_running() {
-        return !glfwWindowShouldClose(_window);
+        return _is_running;
     }
 
     void cleanup() {
@@ -77,5 +79,15 @@ namespace Backend
     Math::Vec2<int> get_screen_size()
     {
         return {_width, _height};
+    }
+
+    GLFWwindow* get_window_pointer()
+    {
+        return _window;
+    }
+
+    void close_window()
+    {
+        _is_running = false;
     }
 }
