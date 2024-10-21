@@ -1,5 +1,6 @@
 #pragma once
 #include "../math.hpp"
+#include <glfw3.h>
 
 namespace Backend
 {
@@ -10,4 +11,6 @@ namespace Backend
     bool is_running();
     void cleanup();
     Math::Vec2<int> get_screen_size();
+    GLFWwindow* get_window_pointer();
+    void close_window();
 }

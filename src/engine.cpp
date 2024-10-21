@@ -5,6 +5,7 @@
 #include <vector>
 #include "utils.hpp"
 #include "game/game.h"
+#include "input/input.h"
 
 Math::Vec2 pos{900.f, 500.f};
 
@@ -18,10 +19,11 @@ void Engine::run()
 	Backend::init();
 	GLBackend::init();	
 	GLRenderer::init();
+	Input::init();
 	Game::init();
 
 	while (Backend::is_running()) {
-		Game::process_input();
+		Input::update();
 		Game::update();
 		Backend::begin_frame();
 		GLBackend::rebind_buffers();
