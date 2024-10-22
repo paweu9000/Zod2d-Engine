@@ -2,6 +2,7 @@
 #include "asset_manager.h"
 #include <unordered_map>
 #include <filesystem>
+#include <iostream>
 
 namespace AssetManager
 {
@@ -15,8 +16,8 @@ namespace AssetManager
         glBindTexture(GL_TEXTURE_2D, texture);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
         int width, height, nrChannels;
         unsigned char* data = stbi_load(path, &width, &height, &nrChannels, 0);
@@ -39,10 +40,11 @@ namespace AssetManager
     void load_textures()
     {
         stbi_set_flip_vertically_on_load(true);
-        add_texture("pope", "assets/pope.png");
+        add_texture("player_run", "assets/P_run.png");
+        add_texture("player_idle", "assets/P_Idle.png");
     }
 
-    GLuint get_texture(std::string_view name)
+    GLuint get_texture(std::string name)
     {
         return _textures.at(name);
     }

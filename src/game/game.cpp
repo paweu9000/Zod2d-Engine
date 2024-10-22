@@ -1,17 +1,36 @@
 #include "game.h"
-#include "../common.h"
+#include "player.h"
 
 namespace Game 
 {
+    float _deltaTime;
+    float _lastFrame;
+
     void init()
     {
-        // TODO
+        _deltaTime = 0.0f;
+        _lastFrame = 0.0f;
+        Player::init();
     }
 
     void update()
     {
+        float _currentFrame = glfwGetTime();
+        _deltaTime = _currentFrame - _lastFrame;
+        _lastFrame = _currentFrame;
         // TODO
+        Player::process_input();
+        Player::update();
     }
 
-    // TODO RenderData Game::get_render_data()
+    float get_delta_time()
+    {
+        return _deltaTime;
+    }
+
+    // TODO 
+    RenderData get_render_data()
+    {
+        return Player::get_render_data();
+    }
 }
