@@ -27,7 +27,7 @@ void Engine::run()
 		Game::update();
 		Backend::begin_frame();
 		GLBackend::rebind_buffers();
-		GLRenderer::render_frame(Utils::get_pos(pos, 64), indices);
+		GLRenderer::render_frame(Game::get_render_data(), indices);
 		Backend::end_frame();
 	}
 
