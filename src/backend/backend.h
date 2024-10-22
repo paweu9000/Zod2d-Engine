@@ -1,4 +1,5 @@
 #pragma once
+#include "../common.h"
 #include "../math.hpp"
 #include <glfw3.h>
 

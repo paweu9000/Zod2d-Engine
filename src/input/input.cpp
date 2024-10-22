@@ -1,6 +1,5 @@
 #include "input.h"
 #include <glfw3.h>
-#include "../backend/backend.h"
 
 namespace Input
 {
